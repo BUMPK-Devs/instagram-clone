@@ -45,13 +45,12 @@ jobs:
       - name: Install pnpm
         run: npm install -g pnpm
 
-      - name: Go To Client
-        run: cd ./client
-
       - name: Install Dependencies
+        working-directory: client
         run: pnpm install
 
       - name: Linting
+        working-directory: client
         run: pnpm run lint
 
       - name: Deploy to Vercel
@@ -60,3 +59,4 @@ jobs:
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
           vercel-org-id: ${{ secrets.VERCEL_CLIENT_ORG_ID }}
           vercel-project-id: ${{ secrets.VERCEL_CLIENT_PROJECT_ID }}
+          working-directory: client
