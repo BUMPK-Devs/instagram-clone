@@ -1,9 +1,12 @@
 name: dev
 on: [push]
 jobs:
-  set-up:
+  server:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+  
       - name: Install Node Js
         uses: actions/setup-node@v3
         with:
@@ -11,17 +14,6 @@ jobs:
 
       - name: Install pnpm
         run: npm install -g pnpm
-
-  server:
-    needs: set-up
-    runs-on: ubuntu-latest
-    steps:
-      
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      - name: Debug - List client directory contents
-        run: ls -la .
 
       - name: Linting
         working-directory: server
@@ -36,15 +28,19 @@ jobs:
         run: pnpm run test:e2e
 
   client:
-    needs: set-up
     runs-on: ubuntu-latest
     steps:
       
       - name: Checkout
         uses: actions/checkout@v3
+  
+      - name: Install Node Js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
 
-      - name: Debug - List server directory contents
-        run: ls -la .
+      - name: Install pnpm
+        run: npm install -g pnpm
 
       - name: Linting
         working-directory: client
