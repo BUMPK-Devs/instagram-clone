@@ -15,6 +15,10 @@ jobs:
       - name: Install pnpm
         run: npm install -g pnpm
 
+      - name: Install Dependencies
+        working-directory: server
+        run: pnpm install
+
       - name: Linting
         working-directory: server
         run: pnpm run lint
@@ -42,6 +46,10 @@ jobs:
       - name: Install pnpm
         run: npm install -g pnpm
 
+      - name: Install Dependencies
+        working-directory: client
+        run: pnpm install
+          
       - name: Linting
         working-directory: client
         run: pnpm run lint
