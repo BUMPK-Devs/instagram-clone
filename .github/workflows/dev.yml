@@ -20,15 +20,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Linting
-        working-directory: ./client
+        working-directory: server
         run: pnpm run lint
 
       - name: Unit Test
-        working-directory: ./client
+        working-directory: server
         run: pnpm run test
 
       - name: End to end Test
-        working-directory: ./client
+        working-directory: server
         run: pnpm run test:e2e
 
   client:
@@ -36,5 +36,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Linting
-        working-directory: ./client
+        working-directory: client
         run: pnpm run lint
