@@ -4,7 +4,7 @@ on:
     branches: main
 jobs:
   server:
-    if: ${{ github.event_name == 'pull_request' && github.event.pull_request.merged && contains(github.event.pull_request.head.label, 'server') }}
+    if: ${{ github.event_name == 'pull_request' && contains(github.event.pull_request.head.label, 'server') }}
     runs-on: ubuntu-latest
     steps:
       - name: setup node env
@@ -27,7 +27,7 @@ jobs:
         run: pnpm run test:e2e
 
   client:
-    if: ${{ github.event_name == 'pull_request' && github.event.pull_request.merged && contains(github.event.pull_request.head.label, 'client') }}
+    if: ${{ github.event_name == 'pull_request' && contains(github.event.pull_request.head.label, 'client') }}
     runs-on: ubuntu-latest
     steps:
       - name: setup node env
