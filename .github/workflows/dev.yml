@@ -18,25 +18,23 @@ jobs:
   server:
     needs: set-up
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: server
     steps:
       - name: Linting
+        working-directory: ./client
         run: pnpm run lint
 
       - name: Unit Test
+        working-directory: ./client
         run: pnpm run test
 
       - name: End to end Test
+        working-directory: ./client
         run: pnpm run test:e2e
 
   client:
     needs: set-up
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: client
     steps:
       - name: Linting
+        working-directory: ./client
         run: pnpm run lint
