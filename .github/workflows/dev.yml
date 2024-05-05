@@ -19,6 +19,9 @@ jobs:
     needs: set-up
     runs-on: ubuntu-latest
     steps:
+      - name: Debug - List client directory contents
+        run: ls -la .
+
       - name: Linting
         working-directory: ./client
         run: pnpm run lint
@@ -31,16 +34,13 @@ jobs:
         working-directory: ./client
         run: pnpm run test:e2e
 
-      - name: Debug - List client directory contents
-        run: ls -la ./client
-
   client:
     needs: set-up
     runs-on: ubuntu-latest
     steps:
+      - name: Debug - List server directory contents
+        run: ls -la .
+
       - name: Linting
         working-directory: ./client
         run: pnpm run lint
-
-      - name: Debug - List server directory contents
-        run: ls -la ./server
