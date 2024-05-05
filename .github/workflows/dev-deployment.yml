@@ -42,7 +42,8 @@ jobs:
           working-directory: server
 
   client:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu- 
+    needs: server 
     steps:
       - name: Checkout
         uses: actions/checkout@v3
