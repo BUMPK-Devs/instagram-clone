@@ -1,0 +1,22 @@
+name: client-dev
+on: [push]
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install Node Js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      - name: Install pnpm
+        run: curl -fsSL https://get.pnpm.io/install.sh | sh -
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Linting
+        run: pnpm run lint
