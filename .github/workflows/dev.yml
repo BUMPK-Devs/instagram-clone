@@ -1,10 +1,7 @@
-name: server-dev
-on:
-  pull_request:
-    branches:
-      - main
+name: dev
+on: [push]
 jobs:
-  lint-and-test:
+  set-up:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -18,18 +15,28 @@ jobs:
       - name: Install pnpm
         run: npm install -g pnpm
 
-      - name: Install dependencies
+  server:
+    needs: set-up
+    runs-on: ubuntu-latest
+    defaults:
+      run:
         working-directory: ./server
-        run: pnpm install
-
+    steps:
       - name: Linting
-        working-directory: ./server
         run: pnpm run lint
 
       - name: Unit Test
-        working-directory: ./server
         run: pnpm run test
 
       - name: End to end Test
-        working-directory: ./server
         run: pnpm run test:e2e
+
+  client:
+    needs: set-up
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./client
+    steps:
+      - name: Linting
+        run: pnpm run lint
