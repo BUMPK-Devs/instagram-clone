@@ -19,6 +19,9 @@ jobs:
     needs: set-up
     runs-on: ubuntu-latest
     steps:
+      - name: Debug - List client directory contents
+        run: ls -la .
+
       - name: Linting
         working-directory: server
         run: pnpm run lint
@@ -35,6 +38,9 @@ jobs:
     needs: set-up
     runs-on: ubuntu-latest
     steps:
+      - name: Debug - List server directory contents
+        run: ls -la .
+
       - name: Linting
         working-directory: client
         run: pnpm run lint
