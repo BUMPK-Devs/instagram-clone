@@ -6,7 +6,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-  
+
       - name: Install Node Js
         uses: actions/setup-node@v3
         with:
@@ -34,10 +34,9 @@ jobs:
   client:
     runs-on: ubuntu-latest
     steps:
-      
       - name: Checkout
         uses: actions/checkout@v3
-  
+
       - name: Install Node Js
         uses: actions/setup-node@v3
         with:
@@ -49,7 +48,12 @@ jobs:
       - name: Install Dependencies
         working-directory: client
         run: pnpm install
-          
+
       - name: Linting
         working-directory: client
         run: pnpm run lint
+
+      - name: Deploy to Vercel
+        uses: amondnet/vercel-action@v20
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
