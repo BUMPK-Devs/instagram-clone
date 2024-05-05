@@ -15,6 +15,9 @@ jobs:
       - name: Install pnpm
         run: npm install -g pnpm
 
+      - name: Go to client folder
+        run: cd ./client
+
       - name: Install dependencies
         run: pnpm install
 
