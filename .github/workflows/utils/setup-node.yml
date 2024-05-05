@@ -1,0 +1,13 @@
+name: Setup Node Env
+jobs:
+  setup-node:
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Install Node Js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 20
+
+    - name: Install pnpm
+      run: npm install -g pnpm
