@@ -4,6 +4,7 @@ on:
     branches: main
 jobs:
   server:
+    if: ${{ contains(github.event.head_commit.modified, 'server/') }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -42,8 +43,9 @@ jobs:
           working-directory: server
 
   client:
-    runs-on: ubuntu- 
-    needs: server 
+    if: ${{ contains(github.event.head_commit.modified, 'client/') }}
+    runs-on: ubuntu-latest
+    needs: server
     steps:
       - name: Checkout
         uses: actions/checkout@v3
