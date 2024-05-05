@@ -7,8 +7,16 @@ jobs:
     if: ${{ contains(github.event.head_commit.modified, 'server/') }}
     runs-on: ubuntu-latest
     steps:
-      - name: setup node env
-        uses: ./utils/setup-node.yml
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install Node Js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      - name: Install pnpm
+        run: npm install -g pnpm
 
       - name: Install Dependencies
         working-directory: server
@@ -39,8 +47,16 @@ jobs:
     runs-on: ubuntu-latest
     needs: server
     steps:
-      - name: setup node env
-        uses: ./utils/setup-node.yml
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install Node Js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      - name: Install pnpm
+        run: npm install -g pnpm
 
       - name: Install Dependencies
         working-directory: client
